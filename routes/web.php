@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', 'App\Http\Controllers\UserController@index')->name('index');
+Route::get('/musica/index','App\Http\Controllers\MusicaController@index')->name('musica.index');
 
 
 Auth::routes();
