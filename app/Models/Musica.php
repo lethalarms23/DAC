@@ -11,8 +11,12 @@ class Musica extends Model
     protected $primaryKey="id_musica";
     protected $table="musicas";
 
+    public $timestamps = false;
+
     protected $fillable=[
         'id_user',
         'titulo',
+        'link',
+        'autor'
     ];
 }

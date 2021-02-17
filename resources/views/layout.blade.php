@@ -37,7 +37,7 @@
 <nav class="navbar navbar-expand-lg navbar bg-dark">
 <div class="navbar-nav">
       <a class="nav-item nav-link" href="{{route('index')}}"><i class="fas fa-home"></i></a>
-      <a class="nav-item nav-link" href="{{route('home')}}">Dashboard</a>
+      <a class="nav-item nav-link" href="{{route('musica.index')}}">Musicas</a>
       @guest
         @if (Route::has('login'))
             <li class="nav-item">
@@ -65,6 +65,7 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
         </form>
+        <a class="dropdown-item text-white" href="{{ route('perfil.dashboard') }}">Perfil</a>
         </div>
         </li>
         @endguest

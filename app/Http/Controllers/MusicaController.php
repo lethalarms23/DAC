@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Musica;
+use Auth;
 
 class MusicaController extends Controller
 {
@@ -13,5 +14,22 @@ class MusicaController extends Controller
         return view('musica.index',[
             'musicas'=>$musica
         ]);
+    }
+
+    public function create(){
+        return view('musica.create');
+    }
+
+    public function store(Request $r){
+        $novaMusica = $r->validate([
+            'titulo'=>['required','min:1','max:255'],
+            'id_user'=>['nullable','numeric','min:1'],
+            'link'=>['required','min:1','max:255'],
+            'autor'=>['required','min:1','max:255'],
+        ]);
+        $userAtual = Auth::user()->id;
+        $novaMusica['id_user']=$userAtual;
+        $musica = Musica::create($novaMusica);
+        return redirect()->route('musica.index');
     }
 }

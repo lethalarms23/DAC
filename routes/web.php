@@ -13,9 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+//Route Dashboard
+Route::get('/perfil/dashboard','App\Http\Controllers\UserController@dash')->name('perfil.dashboard');
+
+//Route Create
+Route::get('/musica/create','App\Http\Controllers\MusicaController@create')->name('musica.create');
+
+//Route Store
+Route::post('/musica/store','App\Http\Controllers\MusicaController@store')->name('musica.store');
+
+//Route Edit
+
+//Route Update
+
+//Route Index
 Route::get('/', 'App\Http\Controllers\UserController@index')->name('index');
 Route::get('/musica/index','App\Http\Controllers\MusicaController@index')->name('musica.index');
-
 
 Auth::routes();
 

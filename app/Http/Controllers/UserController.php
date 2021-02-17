@@ -14,4 +14,8 @@ class UserController extends Controller
             'users'=>$user
         ]);
     }
+
+    public function dash(){
+        return view('perfil.index');
+    }
 }
