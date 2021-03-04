@@ -32,6 +32,9 @@ Route::post('/musica/store','App\Http\Controllers\MusicaController@store')->name
 Route::get('/', 'App\Http\Controllers\UserController@index')->name('index');
 Route::get('/musica/index','App\Http\Controllers\MusicaController@index')->name('musica.index');
 
+//Route Show
+Route::get('/musica/show/{id}','App\Http\Controllers\MusicaController@show')->name('musica.show');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
