@@ -12,41 +12,43 @@
     <script src="{{asset('js/all.min.js')}}"></script>
     <script src="{{asset('js/mdb.js')}}"></script>
     <style>
-    body{
-        background-color: #2b2b2b;
-        color: #ffffff;
+    .navbar-fixed {
+      left: 0;
+      width: 100%
     }
-    a{
-        color: #ffffff;
-    }
-    table,tr,td,th{
-      color: #ffffff;
-      text-align: center;
-    }
-    th {
-      text-decoration: underline;
-    }
-    .floatLeft { width: 50%; float: left; }
-    .floatRight {width: 50%; float: right; }
-    .container { overflow: hidden; }
     </style>
 </head>
-<body>
-<h2 style="text-align: center" class="bg-dark">@yield('header')</h2>
-@yield('conteudo')
-<nav class="navbar navbar-expand-lg navbar bg-dark">
-<div class="navbar-nav">
-      <a class="nav-item nav-link" href="{{route('index')}}"><i class="fas fa-home"></i></a>
-      <a class="nav-item nav-link" href="{{route('musica.index')}}">Musicas</a>
-      @guest
+<body class="bg-light">
+<div class="container-fluid">
+	<div class="row" >
+		<div class="col col-lg-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">
+        <a class="nav-brand text-dark" href="{{route('index')}}"><i class="fas fa-home"></i></a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+              <a class="nav-item nav-link" href="{{route('musica.index')}}">Musicas</a>
+						</li>
+						<li class="nav-item">
+							 <a class="nav-link" href="#">Textos <span class="sr-only">(current)</span></a>
+						</li>
+					</ul>
+					<form class="form-inline">
+						<input class="form-control mr-sm-2" type="text" /> 
+						<button class="btn btn-primary my-2 my-sm-0" type="submit">
+							Procurar
+						</button>
+					</form>
+					<ul class="navbar-nav ml-md-auto">
+          @guest
         @if (Route::has('login'))
             <li class="nav-item">
-              <a class="btn btn-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a class="btn btn-light" href="{{ route('login') }}">{{ __('Login') }}</a>
            </li>
         @endif                  
         @if (Route::has('register'))
             <li class="nav-item">
-              <a class="btn btn-dark" href="{{ route('register') }}">{{ __('Register') }}</a>
+              <a class="btn btn-light" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
         @endif
         @else
@@ -55,22 +57,28 @@
             {{ Auth::user()->name }}
         </a>
 
-        <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item text-white" href="{{ route('logout') }}"
+        <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item text-dark" href="{{route('perfil.index',['nome'=>Auth::user()->name])}}">Perfil</a>
+            <a class="dropdown-item text-dark" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
             </a>
-
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
         </form>
-        <a class="dropdown-item text-white" href="{{ route('perfil.dashboard') }}">Perfil</a>
+        
         </div>
         </li>
         @endguest
-  </div>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
 </div>
-</nav>
+<br>
+@yield('conteudo')
+<br>
 </body>
 </html>

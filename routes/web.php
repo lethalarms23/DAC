@@ -38,3 +38,15 @@ Route::get('/musica/show/{id}','App\Http\Controllers\MusicaController@show')->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route Perfis
+
+Route::get('/perfil/{nome}','App\Http\Controllers\PerfilController@index')->name('perfil.index');
+
+Route::get('/perfil/{nome}/edit','App\Http\Controllers\PerfilController@edit')->name('perfil.edit');
+
+Route::post('/perfil/{nome}/update','App\Http\Controllers\PerfilController@update')->name('perfil.update');
