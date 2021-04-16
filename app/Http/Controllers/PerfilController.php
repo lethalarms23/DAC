@@ -5,19 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Perfil;
+use App\Models\Frames;
 
 class PerfilController extends Controller
 {
     public function index(Request $r){
         $nome = $r->nome;
         $user = Perfil::where('name',$nome)->first();
+        $frame = Frames::where('id',$user->id_frame)->first();
+        if(!is_null($frame)){
+            $user['frame'] = $frame->img_frame;
+        }
         return view('perfil.index',['user'=>$user]);
     }
 
     public function edit(Request $r){
         $nome = $r->nome;
         $user = Perfil::where('name',$nome)->first();
-        return view('perfil.edit',['user'=>$user]);
+        $frame = Frames::where('id',$user->id_frame)->first();
+        if(!is_null($frame)){
+            $user['frame'] = $frame->img_frame;
+        }
+        $frames = Frames::all();
+        return view('perfil.edit',['user'=>$user,'framesList'=>$frames]);
     }
 
     public function update(Request $r){
@@ -29,13 +39,14 @@ class PerfilController extends Controller
             'texto'=>['nullable','min:1','max:255'],
             'status'=>['nullable','min:1','max:255'],
             'img_perfil'=>['image','nullable','max:2000'],
+            'id_frame'=>['nullable','numeric'],
         ]);
         $oldImage = $user->img_perfil;
         if($r->hasFile('img_perfil')){
             $nomeImg = $r->file('img_perfil')->getClientOriginalName();
             $nomeImg = time().'_'.$nomeImg;
             $saveImg = $r->file('img_perfil')->storeAs('img/', $nomeImg);
-            if(!is_null($oldImage)){
+            if(!is_null($oldImage) && $oldImage != "default.jpg"){
                 Storage::Delete('img/'.$oldImage);
             }
             $editUser['img_perfil']=$nomeImg;

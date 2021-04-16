@@ -5,23 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Perfil extends Model
+class Frames extends Model
 {
     use HasFactory;
 
     protected $primaryKey="id";
-    protected $table="users";
+    protected $table="frames";
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable=[
         'id',
-        'name',
-        'musica',
-        'texto',
-        'bio',
-        'status',
-        'img_perfil',
-        'id_frame',
+        'img_frame',
+        'nome',
     ];
 }

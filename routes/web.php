@@ -50,3 +50,9 @@ Route::get('/perfil/{nome}','App\Http\Controllers\PerfilController@index')->name
 Route::get('/perfil/{nome}/edit','App\Http\Controllers\PerfilController@edit')->name('perfil.edit');
 
 Route::post('/perfil/{nome}/update','App\Http\Controllers\PerfilController@update')->name('perfil.update');
+
+//Route Frames
+
+Route::get('/frame/create','App\Http\Controllers\FrameController@create')->name('frame.create');
+
+Route::post('/frame/store','App\Http\Controllers\FrameController@store')->name('frame.store');

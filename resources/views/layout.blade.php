@@ -58,6 +58,9 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right bg-light" aria-labelledby="navbarDropdown">
+        @if(Auth::user()->tipo_user == "admin")
+          <a class="dropdown-item text-dark" href="{{route('home')}}">Painel</a>
+        @endif 
             <a class="dropdown-item text-dark" href="{{route('perfil.index',['nome'=>Auth::user()->name])}}">Perfil</a>
             <a class="dropdown-item text-dark" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

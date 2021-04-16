@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Mar-2021 às 00:17
+-- Tempo de geração: 30-Mar-2021 às 20:30
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -70,6 +70,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('hiddankill@gmail.com', '$2y$10$3em1Gnsx/YlswR08urrLs.ZLtJA.2MILP/g1v9UJot35jFVXpv7mS', '2021-03-28 14:40:39');
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +100,12 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `musica` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `texto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img_perfil` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.jpg',
+  `tipo_user` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'membro',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -104,8 +117,9 @@ CREATE TABLE `users` (
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'LethalArms', 'hiddankill@gmail.com', NULL, '$2y$10$l03QmGFhuu8EyH84Og83bujfGwaUizoH.76fbrgUSZydSQaVyhtcK', NULL, '2021-03-26 23:16:51', '2021-03-26 23:16:51');
+INSERT INTO `users` (`id`, `name`, `email`, `musica`, `texto`, `status`, `bio`, `img_perfil`, `tipo_user`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'LethalArms', 'hiddankill@gmail.com', 'Teste Musica2', 'Teste Texto2', 'Teste Status2', 'Teste Bio2', '1616965888_transferir.png', 'admin', NULL, '$2y$10$l03QmGFhuu8EyH84Og83bujfGwaUizoH.76fbrgUSZydSQaVyhtcK', 'wZDcDBsZQZkOs2VJteW6nKjS2HEJTKS81X5q3HO1g7uCq7HIPU5iug1PM6RM', '2021-03-26 23:16:51', '2021-03-28 20:11:28'),
+(3, 'nel', 'joana@aedah.pt', 'mala', NULL, NULL, 'tolo', 'default.jpg', 'membro', NULL, '$2y$10$znXVpdAFeOwcNo9qOkHQ7.NoegPNVPeKJXoj/.07po/1DW.jULuH2', NULL, '2021-03-29 12:46:10', '2021-03-29 12:46:52');
 
 --
 -- Índices para tabelas despejadas
@@ -170,7 +184,7 @@ ALTER TABLE `textos`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
