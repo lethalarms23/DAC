@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Mar-2021 às 20:30
--- Versão do servidor: 10.4.18-MariaDB
--- versão do PHP: 8.0.3
+-- Generation Time: 22-Abr-2021 às 10:20
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `dac`
+-- Database: `dac`
 --
 
 -- --------------------------------------------------------
@@ -34,8 +35,29 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `frames`
+--
+
+CREATE TABLE `frames` (
+  `id` int(255) NOT NULL,
+  `img_frame` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `frames`
+--
+
+INSERT INTO `frames` (`id`, `img_frame`, `nome`) VALUES
+(1, '1619078849_Dragon Lore.png', 'Dragon Lore'),
+(2, '1619078858_Fire.png', 'Fire'),
+(3, '1619078944_Zup! Fireball.png', 'Zup! Fireball');
 
 -- --------------------------------------------------------
 
@@ -106,6 +128,7 @@ CREATE TABLE `users` (
   `bio` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `img_perfil` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.jpg',
   `tipo_user` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'membro',
+  `id_frame` int(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -117,74 +140,29 @@ CREATE TABLE `users` (
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `musica`, `texto`, `status`, `bio`, `img_perfil`, `tipo_user`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'LethalArms', 'hiddankill@gmail.com', 'Teste Musica2', 'Teste Texto2', 'Teste Status2', 'Teste Bio2', '1616965888_transferir.png', 'admin', NULL, '$2y$10$l03QmGFhuu8EyH84Og83bujfGwaUizoH.76fbrgUSZydSQaVyhtcK', 'wZDcDBsZQZkOs2VJteW6nKjS2HEJTKS81X5q3HO1g7uCq7HIPU5iug1PM6RM', '2021-03-26 23:16:51', '2021-03-28 20:11:28'),
-(3, 'nel', 'joana@aedah.pt', 'mala', NULL, NULL, 'tolo', 'default.jpg', 'membro', NULL, '$2y$10$znXVpdAFeOwcNo9qOkHQ7.NoegPNVPeKJXoj/.07po/1DW.jULuH2', NULL, '2021-03-29 12:46:10', '2021-03-29 12:46:52');
+INSERT INTO `users` (`id`, `name`, `email`, `musica`, `texto`, `status`, `bio`, `img_perfil`, `tipo_user`, `id_frame`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'LethalArms', 'hiddankill@gmail.com', 'Teste Musica2', 'Teste Texto2', 'Teste Status2', 'Teste Bio2', '1616965888_transferir.png', 'admin', 3, NULL, '$2y$10$l03QmGFhuu8EyH84Og83bujfGwaUizoH.76fbrgUSZydSQaVyhtcK', 'wZDcDBsZQZkOs2VJteW6nKjS2HEJTKS81X5q3HO1g7uCq7HIPU5iug1PM6RM', '2021-03-26 23:16:51', '2021-04-22 07:09:58'),
+(3, 'nel', 'joana@aedah.pt', 'mala', NULL, NULL, 'tolo', 'default.jpg', 'membro', NULL, NULL, '$2y$10$znXVpdAFeOwcNo9qOkHQ7.NoegPNVPeKJXoj/.07po/1DW.jULuH2', NULL, '2021-03-29 12:46:10', '2021-03-29 12:46:52');
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `failed_jobs`
+-- Indexes for table `frames`
 --
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Índices para tabela `migrations`
---
-ALTER TABLE `migrations`
+ALTER TABLE `frames`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Índices para tabela `textos`
---
-ALTER TABLE `textos`
-  ADD PRIMARY KEY (`id_texto`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Índices para tabela `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `failed_jobs`
+-- AUTO_INCREMENT for table `frames`
 --
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `textos`
---
-ALTER TABLE `textos`
-  MODIFY `id_texto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `frames`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

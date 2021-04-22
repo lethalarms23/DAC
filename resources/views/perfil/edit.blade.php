@@ -58,7 +58,7 @@
     <div class="row">
     <div class="col-md-auto">
     <h3>{{$user->name}}</h3>
-    <div id="type-badge">
+    <div id="type-badge" style="text-align:center">
     {{$user->tipo_user}}<br>
     </div>
     <br>
@@ -75,7 +75,7 @@
            <h6>Biografia</h6>
            <textarea style="resize: none; width:98%;" name="bio" maxlength=1024 placeholder="Fale um bocado de ti...">{{$user->bio}}</textarea>
            <h6>Musica</h6>
-           <textarea style="resize: none; width:98%" name="musica" maxlength=255 placeholder="Aquela musica que tu adoras...">{{$user->musica}}</textarea>
+           <input type="file" name="musica" value="{{$user->musica}}">
            <h6>Texto</h6>
            <textarea style="resize: none; width:98%" name="texto" maxlength=255 placeholder="Aquele texto incrivel que amas...">{{$user->texto}}</textarea>
            <input type="submit" value="Enviar" class="btn btn-light" style="float:right;">

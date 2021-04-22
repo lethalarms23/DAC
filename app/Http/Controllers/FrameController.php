@@ -14,7 +14,7 @@ class FrameController extends Controller
 
     public function store(Request $r){
         $novoFrame = $r->validate([
-            'img_frame'=>['image','required','max:2000'],
+            'img_frame'=>['image','required','max:6000'],
             'nome'=>['nullable','min:1','max:255'],
         ]);
         if($r->hasFile('img_frame')){

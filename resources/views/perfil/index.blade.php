@@ -58,7 +58,7 @@
     <div class="row">
     <div class="col-md-auto">
       <h3>{{$user->name}}</h3>
-      <div id="type-badge">
+      <div id="type-badge" style="text-align:center">
       {{$user->tipo_user}}<br>
       </div>
       <br>

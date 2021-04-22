@@ -25,7 +25,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed">
         <a class="nav-brand text-dark" href="{{route('index')}}"><i class="fas fa-home"></i></a>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="navbar-nav">
+					<!-- <ul class="navbar-nav">
 						<li class="nav-item">
               <a class="nav-item nav-link" href="{{route('musica.index')}}">Musicas</a>
 						</li>
@@ -38,7 +38,7 @@
 						<button class="btn btn-primary my-2 my-sm-0" type="submit">
 							Procurar
 						</button>
-					</form>
+					</form> -->
 					<ul class="navbar-nav ml-md-auto">
           @guest
         @if (Route::has('login'))
