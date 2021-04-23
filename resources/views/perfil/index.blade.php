@@ -50,6 +50,24 @@
       background-color: #c4b3e0;
       background-size: cover;
     }
+
+    .btn1{
+      background-color:transparent;
+      color: #FFF;
+      font-size:78px;
+      border: none;
+      display: block;
+      margin: 0 auto;
+      opacity: .3;
+      transition: all linear .2s;
+    }
+    .btn1:hover{
+      opacity:1;
+    }
+
+    .fa-pause-circle{
+      display:none;
+    }
 </style>
 @section('conteudo')
 <form action="{{route('perfil.update',['nome'=>$user->name])}}" method="post" enctype="multipart/form-data">
@@ -79,8 +97,10 @@
         <div class="col">
           <h6>Biografia</h6>
           <p>{{$user->bio}}</p>
-          <h6>Musica</h6>
           <p>{{$user->musica}}</p>
+          <audio controls>
+                <source src="../musica/{{$user->musica}}" type="audio/mpeg">
+          </audio>
           <h6>Texto</h6>
           <p>{{$user->texto}}</p>
         </div> 

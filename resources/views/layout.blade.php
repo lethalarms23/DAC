@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="{{asset('css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/flag.min.css')}}">
 
-    <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/all.min.js')}}"></script>
-    <script src="{{asset('js/mdb.js')}}"></script>
     <style>
     .navbar-fixed {
       left: 0;

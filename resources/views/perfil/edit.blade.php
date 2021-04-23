@@ -75,7 +75,7 @@
            <h6>Biografia</h6>
            <textarea style="resize: none; width:98%;" name="bio" maxlength=1024 placeholder="Fale um bocado de ti...">{{$user->bio}}</textarea>
            <h6>Musica</h6>
-           <input type="file" name="musica" value="{{$user->musica}}">
+           <input type="file" name="musica">
            <h6>Texto</h6>
            <textarea style="resize: none; width:98%" name="texto" maxlength=255 placeholder="Aquele texto incrivel que amas...">{{$user->texto}}</textarea>
            <input type="submit" value="Enviar" class="btn btn-light" style="float:right;">

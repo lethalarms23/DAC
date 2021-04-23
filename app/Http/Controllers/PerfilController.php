@@ -35,12 +35,22 @@ class PerfilController extends Controller
         $user = Perfil::where('name',$nome)->first();
         $editUser = $r->validate([
             'bio'=>['nullable','min:1','max:1024'],
-            'musica'=>['file','nullable','mimes:mp3'],
+            'musica'=>['nullable'],
             'texto'=>['nullable','min:1','max:255'],
             'status'=>['nullable','min:1','max:255'],
             'img_perfil'=>['image','nullable','max:2000'],
             'id_frame'=>['nullable','numeric'],
         ]);
+        $oldMusica = $user->musica;
+        if($r->hasFile('musica')){
+            $nomeMusica = $r->file('musica')->getClientOriginalName();
+            $nomeMusica = time().'_'.$nomeMusica;
+            $saveMusica = $r->file('musica')->storeAs('musica/',$nomeMusica);
+            if(!is_null($oldMusica)){
+                Storage::Delete('musica/'.$oldMusica);
+            }
+            $editUser['musica']=$nomeMusica;
+        }
         $oldImage = $user->img_perfil;
         if($r->hasFile('img_perfil')){
             $nomeImg = $r->file('img_perfil')->getClientOriginalName();
@@ -50,16 +60,6 @@ class PerfilController extends Controller
                 Storage::Delete('img/'.$oldImage);
             }
             $editUser['img_perfil']=$nomeImg;
-        }
-        $oldMusica = $user->musica;
-        if($r->hasFile('musica')){
-            $nomeMusica = $r->file('musica')->getClientOriginalName();
-            $nomeMusica = time().'_'.$nomeMusica;
-            $saveMusica = $r->file('musica')->storeAs('musica/',$nomeMusica);
-            if(!is_null($oldMusica) && $oldMusica != null){
-                Storage::Delete('musica/'.$oldMusica);
-            }
-            $editUser['musica']=$nomeMusica;
         }
         $userAtualizado = $user->update($editUser);
         return redirect()->route('perfil.index',['nome'=>$user->name]);
